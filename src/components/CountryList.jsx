@@ -7,16 +7,6 @@ const CountryList = () => {
     const [search, setSearch] = useState("");
     const [loading, setLoading]= useState(false);
     const [filterCountries,setFilterCountries]=useState([]);
-     
-    // const CountryInfo={
-    //     name: "",
-    //     currencies:"",
-    //     capital:"",
-    //     language:"",
-    //     flags:"",
-    //     maps:"",
-    //     timezone:""
-    //  }
 
     useEffect(()=>{
         // setLoading(true);
@@ -30,13 +20,13 @@ const CountryList = () => {
         ).catch(error=>console.error());
     },[])
       // conditional rendering
-  if (loading) {
+    if (loading) {
     return <p>Loading</p>;
-  }
+    }
 
-  const updateSearch = (e)=>{
+    const updateSearch = (e)=>{
     setSearch(e.target.value);
-  }
+    }
 
     return (
         <div>
@@ -48,7 +38,7 @@ const CountryList = () => {
                 onChange={updateSearch}
                 />
             </form>
-           <div className='country-list'>
+            <div className='country-list'>
             {filterCountries.filter((country)=>
                 country.name.common.toLowerCase().includes(search.toLowerCase())
             ).map((country)=>(
@@ -56,26 +46,14 @@ const CountryList = () => {
                 key={countries.id}>{JSON.stringify(countries)}</pre>*/
                 <CountryCard
                 key={country.name.common}
-                id={country.name.common}
-                name={country.name.official}
-                population={1}
-                region={country.region}
-                flag={country.flags.svg}
-                capital={country.capital}
-                //code={country.cca3}
+                country={country}
+                countries={countries}          
                 />
             ))
 
             }
-            {/* {Object.values(CountryInfo).map((value,index)=>{
-                return(
-                    <>
-                    { <CountryCard/>   }
-                    </>
-                )
-            })} */}
 
-           </div>
+            </div>
         </div>
     );
 };

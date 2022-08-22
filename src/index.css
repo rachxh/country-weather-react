@@ -8,56 +8,13 @@
 }
 body {
   font-family: "Lato", sans-serif;
-  background: url(https://cdn.pixabay.com/photo/2017/01/12/13/23/map-1974699_1280.png) no-repeat center center fixed; 
+  /* background: url(https://cdn.pixabay.com/photo/2018/03/15/16/11/background-3228704_1280.jpg) no-repeat center center fixed;  */
 }
-header,
+
 footer {
   min-height: 6vh;
   background-color: rgb(48, 48, 48);
   color: white;
-}
-/* header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  display: flex;
-} */
-.logo {
-  padding: 0 1rem;
-  color: #a4da66;
-  font-family: "Oleo Script Swash Caps", cursive;
-}
-nav {
-  margin-right: 1rem;
-}
-nav ul li {
-  display: inline-block;
-}
-nav a {
-  color: black;
-  text-decoration: none;
-  padding: 1rem;
-}
-
-nav li a:hover {
-  background-image: linear-gradient(135deg, #4b8e15, #a4da66 150%);
-  border-radius: 25px;
-  border: none;
-  color: white;
-  padding: 0.5rem;
-}
-
-.main-title {
-  text-align: center;
-  padding-top: 2rem;
-}
-h4 {
-  font-weight: bolder;
-  color: #9ee664;
-  text-shadow: 2px 2px black;
 }
 
 
@@ -74,46 +31,26 @@ h4 {
   border-radius: 25px;
   margin-bottom: 1.2rem;
 }
-p {
-  padding: 1.5rem 0;
-  font-size: 15px;
-}
+
 main {
   min-height: 0vh;
 }
-.card-list {
+.country-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem ;
   width: 80%;
-  margin: 4rem auto;
+  margin: 2rem auto;
   align-items: center;
   justify-content: center;
   grid-auto-flow: dense;
 }
-.home-card {
-  height: 180px;
-  width: 100%;
-  box-shadow: 0px 5px 20px rgb(68, 67, 67);
+.country-info{
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 0.8rem;
-  background-color: #242526e7;
-  color: white;
-  border: none;
-  border-radius: 20px;
+  flex-direction: row;
+  justify-content: space-between;
 }
-.card {
-  height: 300px;
-  width: 100%;
-  box-shadow: 10px 10px 15px #333;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  object-fit: cover;
-}
+
 
 footer {
   text-align: center;
@@ -122,11 +59,7 @@ footer {
   align-items: center;
 }
 
-.recipe-list {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+
 .search-form {
   min-height: 10vh;
   display: flex;
@@ -137,14 +70,21 @@ footer {
 
 }
 .search-bar {
-  min-width: 40vh;
+  min-width: 50vh;
   padding: 10px;
-  border: solid, 1px #333;
+  border: solid, 1px cornflowerblue;
   border-radius: 25px;
   text-indent: 1rem;
 }
 
-.recipe-page {
-  min-height: 100vh;
-  background-image: linear-gradient(-20deg, #e9defae6 20%, #ebece5ec 50%);
+ul {
+  list-style-type: none;
+}
+.info-title{
+  text-align: center;
+  line-height: 1.5rem;
+}
+h6{
+  color: cornflowerblue;
+  padding: 0.5rem 0;
 }
