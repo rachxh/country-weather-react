@@ -29,8 +29,9 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-// import { Link } from 'react-router-dom';
-const pages = ["HOME", "COUNTRIES"];
+import { LinearProgress } from "@mui/material";
+import { Link } from 'react-router-dom';
+const pages = ["HOME", "COUNTRIES","Favorties"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,7 +48,7 @@ const Header = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -103,11 +104,12 @@ const Header = () => {
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          <Typography
+          
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            // href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -118,9 +120,11 @@ const Header = () => {
               color: "inherit",
               textDecoration: "none",
             }}
-          >
+          >   
+                 
             COUNTRIES
-          </Typography>
+           
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -128,10 +132,13 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
+                <Link to="/countryList"> 
                 {page}
+                </Link>
               </Button>
             ))}
           </Box>
+          
         </Toolbar>
       </Container>
     </AppBar>
