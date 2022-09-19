@@ -1,16 +1,12 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import CountryList from './CountryList';
+// import Header from './Header';
+// import Footer from './Footer';
 
 const Home = () => {
     return (
         <div>
-          <Header/>
-          <h2> Countries API is a simple React application made in BCH lessons. App used
-      Rest Countries API and Open Weather API</h2>
-          <Footer/>
-
+          <h2> Countries App used
+       Rest Countries  https://restcountries.com/ API and Open Weather API</h2>
         </div>
     );
 };

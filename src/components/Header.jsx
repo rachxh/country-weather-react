@@ -9,11 +9,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
-// import { LinearProgress } from "@mui/material";
 import { Link } from 'react-router-dom';
 
-const pages = ["HOME", "COUNTRIES","Favorties"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,10 +24,10 @@ const Header = () => {
   };
 
   return (
+// ................Logo......................
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
           <Typography
             variant="h6"
             noWrap
@@ -48,7 +45,8 @@ const Header = () => {
           >
             COUNTRY-APP
           </Typography>
-
+ {/* ................Logo End......................... */}
+  {/* ................Mobile bar.................... */}  
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -78,29 +76,52 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">  
+                  <Link to="/"> Home</Link>
+                  </Typography>
                 </MenuItem>
-              ))}
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                  <Link to="/countries"> COUNTRIES</Link>
+                  </Typography>
+                </MenuItem>
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                  <Link to="/favories">Favouries</Link>
+                  </Typography>
+                </MenuItem>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-
+          {/* ................Mobile Bar End.................... */}  
+          {/* ................Nav links..................... */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to="/countryList"> 
-                {page}
+                <Link to="/"> 
+                Home
                 </Link>
-              </Button>
-            ))}
-          </Box>
-          
+              </Button> 
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <Link to="/countries"> 
+                Countries
+                </Link>
+              </Button> 
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <Link to="/favList"> 
+              Favouries
+                </Link>
+              </Button> 
+          </Box>      
+          {/* ................Nav Links.................... */}  
         </Toolbar>
       </Container>
     </AppBar>

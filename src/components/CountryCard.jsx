@@ -68,14 +68,14 @@ const CountryCard = ({country,countries}) => {
         </CardActionArea>
     <CardActions>
         <Link 
-        to={`countries/:${name.common}` }
+        to={`/countries/${name.common}` }
         state={{ country:country }}
         >
         <Button size="small" color="primary">
             See More
         </Button>
         </Link>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" >
           <FavoriteIcon />
         </IconButton>
         </CardActions>
