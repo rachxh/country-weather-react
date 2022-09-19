@@ -7,7 +7,8 @@ const Home = () => {
     return (
         <div>
           <Header/>
-          <CountryList/>
+          <h2> Countries API is a simple React application made in BCH lessons. App used
+      Rest Countries API and Open Weather API</h2>
           <Footer/>
 
         </div>

@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import CountryCard from './CountryCard';
+import Header from './Header';
+import Footer from './Footer';
 
 const CountryList = () => {
     const [countries, setCountries] = useState([]);
     const [search, setSearch] = useState("");
-    const [loading, setLoading]= useState(false);
+    const [loading, setLoading]= useState(true);
     const [filterCountries,setFilterCountries]=useState([]);
 
     useEffect(()=>{
@@ -17,7 +19,9 @@ const CountryList = () => {
                 setLoading(false);
                 setFilterCountries(res.data);
             }
-        ).catch(error=>console.error());
+        ).catch(error=>{
+            setLoading(true);
+            console.error()});
     },[])
       // conditional rendering
     if (loading) {
@@ -29,6 +33,8 @@ const CountryList = () => {
     }
 
     return (
+        <>
+        <Header/>
         <div>
             <form className='search-form'>
                 <input type="text" 
@@ -55,6 +61,8 @@ const CountryList = () => {
 
             </div>
         </div>
+        <Footer/>
+        </>
     );
 };
 

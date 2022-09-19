@@ -1,22 +1,3 @@
-// const Header = () => {
-//     return (
-//     <header>
-//         <nav>
-//             <ul>
-//                 <li>
-//                 <Link to="/">Home</Link>
-//                 </li>
-//                 <li>
-//                 <Link to="/countryList">Countries</Link>
-//                 </li>
-//             </ul>
-//         </nav>
-//     </header>
-//     );
-// };
-
-// export default Header;
-
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -29,8 +10,9 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { LinearProgress } from "@mui/material";
+// import { LinearProgress } from "@mui/material";
 import { Link } from 'react-router-dom';
+
 const pages = ["HOME", "COUNTRIES","Favorties"];
 
 const Header = () => {
@@ -104,27 +86,7 @@ const Header = () => {
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-          
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            // href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >   
-                 
-            COUNTRIES
-           
-          </Typography> */}
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
