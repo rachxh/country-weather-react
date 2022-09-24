@@ -116,8 +116,8 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to="/favList"> 
-              Favouries
+                <Link to="/favorites"> 
+                  Favorites
                 </Link>
               </Button> 
           </Box>      

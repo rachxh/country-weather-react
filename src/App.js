@@ -4,7 +4,7 @@ import CountrySingle from "./components/CountrySingle";
 import CountryList from "./components/CountryList";
 import Layout from "./pages/Layout";
 import Home from "./components/Home";
-import Favories from "./components/Favories";
+import FavoritePage from "./components/FavoritePage";
 
 const App = () => {
   const CountryWrapper = (props) => {
@@ -18,7 +18,7 @@ const App = () => {
           <Route index  element={<Home />} />
           <Route path="countries" element={<CountryList />} />
           <Route path="countries/:country" element={<CountryWrapper />} />
-          <Route path="favories" element={<Favories />} />
+          <Route path="favorites" element={<FavoritePage />} />
           </Route>
         </Routes >
     </BrowserRouter>

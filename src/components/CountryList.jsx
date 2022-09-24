@@ -1,104 +1,109 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import CountryCard from './CountryCard';
-import Search from './Search';
-// import Filter from './Filter';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import CountryCard from "./CountryCard";
+import Search from "./Search";
+// import sort from './sort';
 
 const CountryList = () => {
-    const [countries, setCountries] = useState([]);
-    const [search, setSearch] = useState("");
-    const [loading, setLoading]= useState(true);
-    const [filterCountries,setFilterCountries]=useState([]);
-    const [favorites,setFavorites] = useState([]);
-    const getArray = JSON.parse(localStorage.getItem('favorites')||'0');
+  const [countries, setCountries] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState([]);
+  const getArray = JSON.parse(localStorage.getItem("favorites") || "0");
 
+  useEffect(() => {
+    // setLoading(true);
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((res) => {
+        localStorage.setItem("countryArray", JSON.stringify(res.data));
+        setCountries(res.data);
+        setLoading(false);
+        setSort(res.data);
+      })
+      .catch((error) => {
+        setLoading(true);
+        console.error();
+      });
+    }, []);
 
-    useEffect(()=>{
-        if(getArray!==0){
-            setFavorites([...getArray])
-        }
-        // setLoading(true);
-        axios.get("https://restcountries.com/v3.1/all").then(
-            (res) => {
-                //console.log(res.data);
-                setCountries(res.data);
-                setLoading(false);
-                setFilterCountries(res.data);
-                // localStorage.setItem('Detail', JSON.stringify(res.data));
-            }
-        ).catch(error=>{
-            setLoading(true);
-            console.error()});
-    },[])
-
-      // conditional rendering
-    if (loading) {
+  // conditional rendering
+if (loading) {
     return <p>Loading</p>;
+}
+
+const handleSearch = (searchValue) => {
+    setSearch(searchValue)
+};
+
+const handleSort = (e) => {
+    const sort = [...countries];
+    switch (e.target.value) {
+        case "AToZ":
+            setSort(
+                sort.sort((countryA, countryB) => (countryA.name.common > countryB.name.common ? 1 : -1))
+            );
+            break;
+        case "ZToA":
+            setSort(
+                sort.sort((countryA, countryB) => (countryA.name.common > countryB.name.common ? -1 : 1))
+            );
+            break;
+        default:
+            // Empty the sort and show original order.
+            setSort(
+                sort
+            )
+            break;
     }
- 
-     localStorage.setItem('Detail', JSON.stringify(countries));
-     var storage = JSON.parse(localStorage.getItem(countries));
+};
 
+const setFavorite = (favoriteCountryName) => {
+    let favoriteArray = window.localStorage.getItem("favoriteArray")
+    // Check if favoriteArray exists. If not create an empty array.
+    favoriteArray = (favoriteArray === null) ? [] : JSON.parse(favoriteArray);
 
-    // const updateSearch = (e)=>{
-    // setSearch(e.target.value);
-    // }
-     const addFav=()=>{
-        let array = favorites;
-        let addArray = true;
-        array.map((item, key)=>{
-            if(item===countries.i){
-                array.splice(key,1);
-                addArray = false;
-            }
-        });
-        if (addArray){
-            array.push(countries.i);
-        }
-        setFavorites([...array])
-     }
-      
-      localStorage.setItem('favorites', JSON.stringify(favorites));
+    let index = favoriteArray.findIndex((countryName) => countryName === favoriteCountryName)
 
-      var storage = localStorage.getItem('favItem'+(countries.i) || '0')
-      if(storage == null){
-        localStorage.setItem(('favItem'+(countries.i)),JSON.stringify(countries.items));
-      }else{
-        localStorage.removeItem('favItem'+(countries.i))
-      }
-      
+    if (index === -1) {
+        // countryName is not a favorite yet! Add it to the favorites.
+        favoriteArray.push(favoriteCountryName)
+    } else {
+        // countryName is already a favorite! Remove it from the favorites.
+        favoriteArray.splice(index, 1);
+    }
 
-    return (
-        <main>
+    window.localStorage.setItem("favoriteArray", JSON.stringify(favoriteArray));
+};
+
+return (
+    <main>
         <div>
-            {/* <form className='search-form'>
-                <input type="text" 
-                className='search-bar'
-                value={search}
-                placeholder="Search for Countries"
-                onChange={updateSearch}
-                />
-            </form> */}
-        
-            <Search/>
-            
-            <div className='country-list'>
-            {filterCountries.filter((country)=>
-                country.name.common.toLowerCase().includes(search.toLowerCase())
-            ).map((country)=>(
-                <CountryCard
-                key={country.name.common}
-                country={country}
-                countries={countries}          
-                />
-            ))
+            <Search onSearch={handleSearch} />
+            <select onChange={handleSort}>
+                <option>Sort</option>
+                <option value="AToZ">A-Z</option>
+                <option value="ZToA">Z-A</option>
+            </select>
 
+            <div className="country-list">
+            {sort
+                .filter((country) =>
+                    country.name.common.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((country) => (
+                    <CountryCard
+                    key={country.name.common}
+                    country={country}
+                    onClickFavorite={setFavorite}
+                    showHeart={true}
+                    />
+                ))
             }
-
             </div>
         </div>
-        </main>
-    );
+    </main>
+);
 };
 
 export default CountryList;

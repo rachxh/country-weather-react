@@ -13,8 +13,13 @@ import { GrLanguage} from "react-icons/gr";
 
 
 
-const CountryCard = ({country,countries}) => {
-    const {name,languages,flags,population} =country;
+const CountryCard = ({country, showHeart, onClickFavorite}) => {
+    const {name,languages,flags,population} = country;
+
+    const updateFavorite = () => {
+        onClickFavorite(country.name.common);
+    }
+
     // console.log(country);
     // console.log(languages);
     return (
@@ -66,23 +71,26 @@ const CountryCard = ({country,countries}) => {
             </Typography>
         </CardContent>
         </CardActionArea>
-    <CardActions>
-        <Link 
-        to={`/countries/${name.common}` }
-        state={{ country:country }}
-        >
-        <Button size="small" color="primary">
-            See More
-        </Button>
-        </Link>
-        <IconButton aria-label="add to favorites" >
-          <FavoriteIcon />
-        </IconButton>
+        <CardActions>
+            <Link 
+            to={`/countries/${name.common}` }
+            state={{ country:country }}
+            >
+            <Button size="small" color="primary">
+                See More
+            </Button>
+            </Link>
+            <span>
+            {showHeart &&
+                <IconButton
+                aria-label="add to favorites" onClick={updateFavorite}>
+                    <FavoriteIcon />
+                </IconButton>
+            }
+            </span>
         </CardActions>
-        </Card>
-        </>
-
-
+    </Card>
+    </>
     );
 };
 

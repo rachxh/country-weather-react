@@ -1,19 +1,16 @@
-import React,{ useState}  from 'react';
+import React from 'react';
 
-const Search = () => {
+const Search = (props) => {
 
-    const [search, setSearch] = useState("");
-
-    const updateSearch = (e)=>{
-        setSearch(e.target.value);
-        }
+    const updateSearch = (e) => {
+        props.onSearch(e.target.value);
+    }
         
     return (
         <div>
             <form className='search-form'>
                 <input type="text" 
                 className='search-bar'
-                value={search}
                 placeholder="Search for Countries"
                 onChange={updateSearch}
                 />
