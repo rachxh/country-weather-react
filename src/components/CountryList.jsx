@@ -13,7 +13,7 @@ const CountryList = () => {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     const [sort, setSort] = useState([]);
-    // const [bookmark,setBookmark]=useState([]);
+    const [bookmarkArray, setBookmarkArray] = useState([])
     
 
     useEffect(() => {
@@ -21,6 +21,14 @@ const CountryList = () => {
             .get("https://restcountries.com/v3.1/all")
             .then((res) => {
                 localStorage.setItem("countryArray", JSON.stringify(res.data));
+                
+                let bookmarkArrayJson = window.localStorage.getItem("bookmarkArray");
+
+                if (bookmarkArrayJson === null)
+                    setBookmarkArray([]);
+                else
+                    setBookmarkArray(JSON.parse(bookmarkArrayJson));
+
                 setCountries(res.data);
                 setLoading(false);
                 setSort(res.data);
@@ -73,36 +81,35 @@ const CountryList = () => {
         }
     };
 
-    const setFavorite = (favoriteCountryName) => {
-        let favoriteArray = window.localStorage.getItem("favoriteArray");
-        // Check if favoriteArray exists. If not create an empty array.
-        favoriteArray = favoriteArray === null ? [] : JSON.parse(favoriteArray);
-
-        let index = favoriteArray.findIndex(
-            (countryName) => countryName === favoriteCountryName
+    const addBookmark = (bookmarkCountryName) => {
+        let index = bookmarkArray.findIndex(
+            (countryName) => countryName === bookmarkCountryName
         );
 
         if (index === -1) {
-            // countryName is not a favorite yet! Add it to the favorites.
-            favoriteArray.push(favoriteCountryName);
+            // countryName is not a bookmark yet! Add it to the bookmarks.
+            bookmarkArray.push(bookmarkCountryName);
         } else {
-            // countryName is already a favorite! Remove it from the favorites.
-            favoriteArray.splice(index, 1);
+            // countryName is already a bookmark! Remove it from the bookmarks.
+            bookmarkArray.splice(index, 1);
         }
 
-        window.localStorage.setItem("favoriteArray", JSON.stringify(favoriteArray));
+        setBookmarkArray([...bookmarkArray]);
+        window.localStorage.setItem("bookmarkArray", JSON.stringify(bookmarkArray));
     };
+
     const checkIsBookmark = (CountryName) => {
-        let favoriteArray = window.localStorage.getItem("favoriteArray");
-        // Check if favoriteArray exists. If not create an empty array.
-        favoriteArray = favoriteArray === null ? [] : JSON.parse(favoriteArray);
+        // Check if bookmarkArray exists. If not create an empty array.
+        if (bookmarkArray === null)
+            return false;
 
-        let index = favoriteArray.findIndex(
-            (favcountryName) => favcountryName === CountryName
+        let index = bookmarkArray.findIndex(
+            (bookmarkedCountryName) => bookmarkedCountryName === CountryName
         );
-return (index>=0)
 
+        return (index>=0)
     };
+
     return (
         <main>
             <div className={style.sort_container}>
@@ -114,22 +121,21 @@ return (index>=0)
                 </select>
             </div>
 
-                <div className={style.country_list}>
-                    {sort
-                        .filter((country) =>
-                            country.name.common.toLowerCase().includes(search.toLowerCase())
-                        )
-                        .map((country) => (
-                            <CountryCard
-                                key={country.name.common}
-                                country={country}
-                                onClickFavorite={setFavorite}
-                                showHeart={true}
-                                isBookmarked={checkIsBookmark(country.name.common)}
-                            />
-                        ))}
-                </div>
-           
+            <div className={style.country_list}>
+                {sort
+                    .filter((country) =>
+                        country.name.common.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .map((country) => (
+                        <CountryCard
+                            key={country.name.common}
+                            country={country}
+                            onClickBookmark={addBookmark}
+                            showHeart={true}
+                            isBookmarked={checkIsBookmark(country.name.common)}
+                        />
+                    ))}
+            </div>
         </main>
     );
 };
