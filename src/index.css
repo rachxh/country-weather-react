@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
 
 * {
   margin: 0;
@@ -9,82 +10,29 @@
 body {
   font-family: "Lato", sans-serif;
   /* background: url(https://cdn.pixabay.com/photo/2018/03/15/16/11/background-3228704_1280.jpg) no-repeat center center fixed;  */
-}
-
-footer {
-  min-height: 6vh;
-  background-color: rgb(48, 48, 48);
-  color: white;
-}
-
-
-.btn {
-  border: none;
-  color: white;
-  text-align: center;
-  position: relative;
-  background-image: linear-gradient(135deg, #4b8e15, #a4da66 150%);
-  text-align: center;
-  padding: 0.6rem 1rem;
-  font-weight: bolder;
-  cursor: pointer;
-  border-radius: 25px;
-  margin-bottom: 1.2rem;
+  /* background: url(https://cdn.pixabay.com/photo/2016/11/21/03/56/landscape-1844226_1280.png); */
 }
 
 main {
-  min-height: 0vh;
-}
-.country-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 2rem ;
-  width: 80%;
-  margin: 2rem auto;
-  align-items: center;
-  justify-content: center;
-  grid-auto-flow: dense;
-}
-.country-info{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  min-height: 85vh;
 }
 
-
+.home_title{
+  margin: 3rem auto;
+  text-align: center;
+  color: rgb(80, 135, 237); 
+  font-family: 'Bungee Spice', cursive;
+}
+.home_image{
+    margin: 0 auto;
+    width: 65%;
+}
 footer {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-
-.search-form {
-  min-height: 10vh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 3rem;
-
-}
-.search-bar {
-  min-width: 50vh;
-  padding: 10px;
-  border: solid, 1px cornflowerblue;
-  border-radius: 25px;
-  text-indent: 1rem;
-}
-
-ul {
-  list-style-type: none;
-}
-.info-title{
-  text-align: center;
-  line-height: 1.5rem;
-}
-h6{
-  color: cornflowerblue;
-  padding: 0.5rem 0;
+  min-height: 5vh;
+  background-color: rgb(48, 48, 48);
+  color: white;
 }

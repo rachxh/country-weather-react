@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link } from 'react-router-dom';
 
 
+
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -22,6 +23,10 @@ const Header = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+  const linkStyle={
+    textDecoration:"none",
+    color: "white"
+  }
 
   return (
 // ................Logo......................
@@ -43,7 +48,7 @@ const Header = () => {
               textDecoration: "none",
             }}
           >
-            COUNTRY-APP
+            COUNTRY-APP🌏
           </Typography>
  {/* ................Logo End......................... */}
   {/* ................Mobile bar.................... */}  
@@ -100,7 +105,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to="/"> 
+                <Link style={linkStyle} to="/"> 
                 Home
                 </Link>
               </Button> 
@@ -108,7 +113,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to="/countries"> 
+                <Link to="/countries" style={linkStyle}> 
                 Countries
                 </Link>
               </Button> 
@@ -116,8 +121,8 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link to="/favorites"> 
-                  Favorites
+                <Link to="/bookmarks" style={linkStyle}> 
+                  BOOKMARKS
                 </Link>
               </Button> 
           </Box>      

@@ -12,6 +12,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import styles from "./CountrySingle.module.css";
 import { Link } from 'react-router-dom';
+import style from "./CountrySingle.module.css"
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+
+
+ 
+
 
 const CountrySingle = () => {
   const location = useLocation();
@@ -28,6 +35,10 @@ const CountrySingle = () => {
   // const [country,setCountry]=useState('');
   const lat = countryInfo.latlng[0];
   const lon = countryInfo.latlng[1];
+  const linkStyle={
+    textDecoration:"none",
+    color: "white"
+  }
 
   useEffect(() => {
     axios
@@ -46,8 +57,17 @@ const CountrySingle = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading</p>;
+    return (
+      
+      <Box sx={{ width: '100%' }}>
+        <span>Loading...</span>
+      <LinearProgress />
+    </Box>
+
+    )
+   
     }
+  const hasBorder = countryInfo.borders
   // const degree = weather.list.main.temp;
   // const weatherState = weather.list.weather.main;
    console.log(weather.list);
@@ -65,43 +85,43 @@ const CountrySingle = () => {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              <h2>{countryName}</h2>
-              <h6>Capital:{countryInfo.capital[0]}</h6>
+              <h2>{countryName} <span><img src={countryInfo.flags.svg}  alt={countryName} width="30px"/></span></h2>
+              <h6>Capital: {countryInfo.capital[0]}</h6>
             </Typography>
-            <Typography variant="" color="text.secondary">
-              <p>
-                Right now temperature it is {weather.list[0].main.temp}°C and weather condition is {weather.list[0].weather[0].description} in {countryName}
-              </p>
+            {/* <Typography variant="p" color="text.secondary"> */}
+            <p>
+              Right now temperature it is <strong> {weather.list[0].main.temp}°C</strong> and weather condition is <strong>{weather.list[0].weather[0].description}</strong> in <strong>{countryInfo.capital[0]}</strong>
+            </p>
               <img src={`http://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`} alt="weather state"/>
-            </Typography>
+            {/* </Typography> */}
           </CardContent>
         </CardActionArea>
         <CardActions>
           <h2>
             <FcGallery />
           </h2>
-          <a href={countryInfo.maps.googleMaps}>Country map</a>
+          <span><a href={countryInfo.maps.googleMaps}>Country map</a></span>
         </CardActions>
         <CardActions>
           <h2>
             <FcGlobe />
           </h2>
-          <h4>Timezone: {countryInfo.timezones[0]}</h4>
+          <h4>Timezone: <span>{countryInfo.timezones[0]}</span></h4>
         </CardActions>
         <CardActions>
           <h2>
             <FcLandscape />
           </h2>
           <h4>Borders: </h4>
-          {/* {countryInfo.borders.map((border)=>(
-            <p key={border}>{border}</p>
+         <span>{hasBorder ?countryInfo.borders.map((border)=>(
+            <li key={border}>{border}</li>
           ))
-          } */}
+          :'No border data'}</span>
         </CardActions>
         <CardActions>
-         <h5>
-          <Link to="/countries">Go back</Link>
-         </h5>
+         <button className={style.btn}>
+          <Link to="/countries" style={linkStyle}>Go back</Link>
+         </button>
         </CardActions>
       </Card>
       <div className="map">

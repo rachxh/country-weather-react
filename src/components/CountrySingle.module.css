@@ -4,14 +4,33 @@
     box-sizing: border-box;
 }
 .container{
-     margin: 0 auto;
+    margin: 2rem auto;
     padding: 2rem;
-    /* display: flexbox;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
+    
 }
-/* img{
-    width: 100px;
-    height: 350px;
-} */
+
+
+.btn {
+    border: none;
+    color: white;
+    text-align: center;
+    position: relative;
+    background-image: linear-gradient(135deg, #3d90e9, #4260e3 150%);
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-weight: bolder;
+    cursor: pointer;
+    border-radius: 25px;
+    margin-bottom: 1.2rem;
+  }
+  h2{
+    margin-right: 0.5rem;
+  }
+  strong{
+    color: #3d90e9 ;
+  }
+  span{
+    color: #3d90e9 ;
+    font-weight: bold;
+    margin-left: 0.3rem;
+  }

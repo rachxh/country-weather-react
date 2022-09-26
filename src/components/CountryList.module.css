@@ -1,0 +1,26 @@
+.country_list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 2rem;
+    width: 80%;
+    margin: 2rem auto;
+    align-items: center;
+    justify-content: center;
+    grid-auto-flow: dense;
+}
+
+.country_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.sort_container{
+    width: 80%;
+    margin: 2rem auto; 
+}
+.sort{
+    padding: 0.2rem 0.5rem;
+    background-color: white;
+    border-radius: 25px;
+    border: 2px solid cornflowerblue;
+}
