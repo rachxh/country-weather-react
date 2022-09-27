@@ -23,7 +23,7 @@ const BookmarkPage = () => {
 
     return (
         <div>
-            <h1 className={style.page_title}>Countries I have been to 📍</h1>
+            <h1 className={style.page_title}>Countries I have been to...📍</h1>
             <div className={style.country_list}>
             {bookmarkCountryArray.map((country) => (
                 <CountryCard
