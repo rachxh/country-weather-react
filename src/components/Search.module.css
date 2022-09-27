@@ -21,19 +21,22 @@ input{
   outline: none;
 } */
 
-span{
-  padding: 0;
-  /* text-align: center; */
-}
 
-@media screen and (max-width: 996px) {
+/* 769px — 1024px: Small screens, laptops */
+@media screen and (max-width: 1024px) {
   .search_bar {
    width:70%;
   }
 }
-
-@media screen and (max-width: 600px) {
+/* 481px — 768px: iPads, Tablets */
+@media screen and (max-width: 768px) {
   .search_bar {
-   width:70%;
+   width:95%;
+  }
+}
+/* 320px — 480px: Mobile devices */
+@media screen and (max-width: 480px) {
+  .search_bar {
+   width:95%;
   }
 }
