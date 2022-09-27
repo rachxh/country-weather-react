@@ -9,9 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import { Link } from 'react-router-dom';
-
-
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -23,13 +21,16 @@ const Header = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const linkStyle={
-    textDecoration:"none",
-    color: "white"
-  }
+  const linkStyle = {
+    textDecoration: "none",
+    color: "white",
+  };
+  const mobileLinkStyle = {
+    textDecoration: "none",
+  };
 
   return (
-// ................Logo......................
+    // ................Logo......................
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -50,8 +51,8 @@ const Header = () => {
           >
             COUNTRY-APP🌏
           </Typography>
- {/* ................Logo End......................... */}
-  {/* ................Mobile bar.................... */}  
+          {/* ................Logo End......................... */}
+          {/* ................Mobile bar.................... */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -81,52 +82,61 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">  
-                  <Link to="/"> Home</Link>
-                  </Typography>
-                </MenuItem>
-                <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                  <Link to="/countries"> COUNTRIES</Link>
-                  </Typography>
-                </MenuItem>
-                <MenuItem  onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                  <Link to="/favories">Favouries</Link>
-                  </Typography>
-                </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link to="/" style={mobileLinkStyle }>
+                    {" "}
+                    Home{" "}
+                  </Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link to="/countries" style={mobileLinkStyle }>
+                    {" "}
+                    Countries
+                  </Link>
+                </Typography>
+              </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link to="/bookmarks" style={mobileLinkStyle}>
+                    {" "}
+                    Bookmarks{" "}
+                  </Link>
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
-          {/* ................Mobile Bar End.................... */}  
+          {/* ................Mobile Bar End.................... */}
           {/* ................Nav links..................... */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link style={linkStyle} to="/"> 
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <Link style={linkStyle} to="/">
                 Home
-                </Link>
-              </Button> 
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link to="/countries" style={linkStyle}> 
+              </Link>
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <Link to="/countries" style={linkStyle}>
                 Countries
-                </Link>
-              </Button> 
-              <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                <Link to="/bookmarks" style={linkStyle}> 
-                  BOOKMARKS
-                </Link>
-              </Button> 
-          </Box>      
-          {/* ................Nav Links.................... */}  
+              </Link>
+            </Button>
+            <Button
+              onClick={handleCloseNavMenu}
+              sx={{ my: 2, color: "white", display: "block" }}
+            >
+              <Link to="/bookmarks" style={linkStyle}>
+                BOOKMARKS
+              </Link>
+            </Button>
+          </Box>
+          {/* ................Nav Links.................... */}
         </Toolbar>
       </Container>
     </AppBar>

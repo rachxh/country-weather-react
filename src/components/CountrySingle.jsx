@@ -16,27 +16,17 @@ import style from "./CountrySingle.module.css"
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 
-
- 
-
-
 const CountrySingle = () => {
   const location = useLocation();
-  const [loading, setLoading]= useState(true);
+  const [loading, setLoading] = useState(true);
   const [weather, setWeather] = useState("");
   const API_key = process.env.REACT_APP_OPENWEATHER_KEY;
-  // console.log(location);
-  // const navigate = useNavigate();
-
   const countryInfo = location.state.country;
-  // console.log(countryInfo);
   const countryName = countryInfo.name.common;
-  // const countries = location.state.countries;
-  // const [country,setCountry]=useState('');
   const lat = countryInfo.latlng[0];
   const lon = countryInfo.latlng[1];
-  const linkStyle={
-    textDecoration:"none",
+  const linkStyle = {
+    textDecoration: "none",
     color: "white"
   }
 
@@ -46,88 +36,85 @@ const CountrySingle = () => {
         `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_key}&units=metric`
       )
       .then((res) => {
-        // setDegree(res.data)
+
         setWeather(res.data);
         setLoading(false);
-        // console.log(res.data);
       })
-      .catch((err) => {setLoading(true);
-        console.log(err)});
+      .catch((err) => {
+        setLoading(true);
+        console.log(err)
+      });
 
   }, []);
 
   if (loading) {
     return (
-      
+
       <Box sx={{ width: '100%' }}>
         <span>Loading...</span>
-      <LinearProgress />
-    </Box>
-
+        <LinearProgress />
+      </Box>
     )
-   
-    }
+
+  }
   const hasBorder = countryInfo.borders
-  // const degree = weather.list.main.temp;
-  // const weatherState = weather.list.weather.main;
-   console.log(weather.list);
-   console.log(countryInfo.maps.openStreetMaps); 
+
   return (
     <>
-    <div className={styles.container}>
-      <Card sx={{ maxWidth: 550 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            sx={{ maxWidth: 100 }}
-            image={countryInfo.coatOfArms.svg}
-            alt={countryName}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              <h2>{countryName} <span><img src={countryInfo.flags.svg}  alt={countryName} width="30px"/></span></h2>
-              <h6>Capital: {countryInfo.capital[0]}</h6>
-            </Typography>
-            {/* <Typography variant="p" color="text.secondary"> */}
-            <p>
-              Right now temperature it is <strong> {weather.list[0].main.temp}°C</strong> and weather condition is <strong>{weather.list[0].weather[0].description}</strong> in <strong>{countryInfo.capital[0]}</strong>
-            </p>
-              <img src={`http://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`} alt="weather state"/>
-            {/* </Typography> */}
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <h2>
-            <FcGallery />
-          </h2>
-          <span><a href={countryInfo.maps.googleMaps}>Country map</a></span>
-        </CardActions>
-        <CardActions>
-          <h2>
-            <FcGlobe />
-          </h2>
-          <h4>Timezone: <span>{countryInfo.timezones[0]}</span></h4>
-        </CardActions>
-        <CardActions>
-          <h2>
-            <FcLandscape />
-          </h2>
-          <h4>Borders: </h4>
-         <span>{hasBorder ?countryInfo.borders.map((border)=>(
-            <li key={border}>{border}</li>
-          ))
-          :'No border data'}</span>
-        </CardActions>
-        <CardActions>
-         <button className={style.btn}>
-          <Link to="/countries" style={linkStyle}>Go back</Link>
-         </button>
-        </CardActions>
-      </Card>
-      <div className="map">
-        
+      <div className={styles.container}>
+        <Card sx={{ maxWidth: 550 }}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              sx={{ maxWidth: 100 }}
+              image={countryInfo.coatOfArms.svg}
+              alt={countryName}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                <h2>{countryName} <span><img src={countryInfo.flags.svg} alt={countryName} width="30px" /></span></h2>
+                <h6>Capital: {countryInfo.capital[0]}</h6>
+              </Typography>
+              {/* <Typography variant="p" color="text.secondary"> */}
+              <p>
+                Right now temperature it is <strong> {weather.list[0].main.temp}°C</strong> and weather condition is <strong>{weather.list[0].weather[0].description}</strong> in <strong>{countryInfo.capital[0]}</strong>
+              </p>
+              <img src={`http://openweathermap.org/img/wn/${weather.list[0].weather[0].icon}@2x.png`} alt="weather state" />
+              {/* </Typography> */}
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <h2>
+              <FcGallery />
+            </h2>
+            <span><a href={countryInfo.maps.googleMaps}>Country map</a></span>
+          </CardActions>
+          <CardActions>
+            <h2>
+              <FcGlobe />
+            </h2>
+            <h4>Timezone: <span>{countryInfo.timezones[0]}</span></h4>
+          </CardActions>
+          <CardActions>
+            <h2>
+              <FcLandscape />
+            </h2>
+            <h4>Borders: </h4>
+            <span>{hasBorder ? countryInfo.borders.map((border) => (
+              <li key={border}>{border}</li>
+            ))
+              : 'No border data'}</span>
+          </CardActions>
+          <CardActions>
+            <button className={style.btn}>
+              <Link to="/countries" style={linkStyle}>Go back</Link>
+            </button>
+          </CardActions>
+        </Card>
+        <div className="map">
+
+        </div>
       </div>
-    </div>
     </>
   );
 };

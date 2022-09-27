@@ -15,7 +15,6 @@ const CountryList = () => {
     const [sort, setSort] = useState([]);
     const [bookmarkArray, setBookmarkArray] = useState([])
     
-
     useEffect(() => {
         axios
             .get("https://restcountries.com/v3.1/all")
@@ -93,7 +92,7 @@ const CountryList = () => {
             // countryName is already a bookmark! Remove it from the bookmarks.
             bookmarkArray.splice(index, 1);
         }
-
+            //The JavaScript spread operator (...) allows us to quickly copy all or part of an existing array or object into another array or object.
         setBookmarkArray([...bookmarkArray]);
         window.localStorage.setItem("bookmarkArray", JSON.stringify(bookmarkArray));
     };

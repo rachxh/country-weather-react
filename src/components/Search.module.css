@@ -1,5 +1,4 @@
 .search_form {
-    min-height: 12vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -8,34 +7,33 @@
   
   }
   .search_bar {
-    min-width: 50vh;
-    padding: 10px;
+    width: 50%;
+    padding: 12px;
     border: solid 2px cornflowerblue;
     border-radius: 25px;
+    text-indent: 0.5rem;
   }
-.clear_btn{
-  border: none;
-  color: white;
-  text-align: center;
-  position: relative;
-  background-image: linear-gradient(135deg, #3d90e9, #4260e3 150%);
-  text-align: center;
-  padding: 0.6rem 0.5rem;
-  cursor: pointer;
-  border-radius: 25px;
-  margin-left: 0.5rem;
-}
 input{
   border: none;
-  min-width: 45vh;
 }
-textarea:focus, input:focus{
+/* take the highligh off when typing in css
+/* textarea:focus, input:focus{
   outline: none;
-}
+} */
 
 span{
-  /* position: absolute; */
   padding: 0;
-  min-width: 50px;
-  text-align: center;
+  /* text-align: center; */
+}
+
+@media screen and (max-width: 996px) {
+  .search_bar {
+   width:70%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search_bar {
+   width:70%;
+  }
 }

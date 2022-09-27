@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -15,14 +15,11 @@ import style from "./CountryCard.module.css";
 
 const CountryCard = ({ country, showHeart, isBookmarked, onClickBookmark }) => {
     const { name, languages, flags, population } = country;
-    const [checked, setChecked] = React.useState(false);
     
     const updateBookmark = (event) => {
         onClickBookmark(name.common);
-        //setChecked(event.target.checked);
     };
 
-    console.log(name.common, isBookmarked);
     return (
         <>
             <Card sx={{ maxWidth: 450, minHeight: 400 }}>

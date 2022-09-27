@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Oleo+Script+Swash+Caps&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Metal&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
@@ -12,11 +11,9 @@ body {
   font-family: "Lato", sans-serif;
  
 }
-
 main {
   min-height: 85vh;
 }
-
 .home_title{
   margin: 3rem auto;
   text-align: center;
